@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">首页</h1>
+		</header>
+		<div class="mui-content">
+		    <button type="button" onclick="startToDo()" style="display: block; margin: 20px auto;">开始</button>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+      		console.log("加载了页面");
+      		//添加自定义事件
+			window.addEventListener('finishedEvent',function(event){
+					//通过event.detail可获得传递过来的参数内容
+					console.log("触发了finishedEvent事件，参数内容："+JSON.stringify(event.detail));
+					//在此处添加要刷新的内容或其他操作
+					//将“开始”改为“已完成"并禁用按钮
+					var startBtn = document.querySelector("button");
+					startBtn.innerHTML = "已完成";
+					startBtn.disabled = true;
+				});
+	      	});
+	      	//开始业务流程
+			function startToDo(){
+				mui.openWindow({
+					url: "page-a.html",
+					id: "pop-to-target-page-a"
+				});
+			}
+		</script>
+	</body>
+
+</html>

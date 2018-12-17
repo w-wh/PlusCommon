@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			button{
+				display: block;
+				margin: 0 auto;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">页面C</h1>
+		</header>
+		<div class="mui-content">
+		    <button type="button" onclick="popToTarget()">完成</button>
+		    <button type="button" onclick="popToTarget_globalRefresh()">完成（全局刷新）</button>
+		    <button type="button" onclick="popToTarget_partRefresh()">完成（局部刷新）</button>
+		    <button type="button" onclick="popToTarget_global_partRefresh()">完成（全局&局部刷新）</button>
+		    <button type="button" onclick="popToTarget_launch_path()">返回到应用入口页面</button>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/plus.common.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			//返回到首页（不刷新）
+			function popToTarget(){
+				plusCommon.popToTarget("pop-to-target-home");
+			}
+			//返回到首页（全局刷新）
+			function popToTarget_globalRefresh(){
+				plusCommon.popToTarget("pop-to-target-home", true);
+			}
+			//返回到首页（局部刷新）
+			function popToTarget_partRefresh(){
+				plusCommon.popToTarget("pop-to-target-home", false, "finishedEvent", {key: "value"});
+			}
+			//返回到首页（全局&局部刷新）
+			function popToTarget_global_partRefresh(){
+				plusCommon.popToTarget("pop-to-target-home", true, "finishedEvent", {key: "value"});
+			}
+			//返回到应用入口页面
+			function popToTarget_launch_path(){
+				plusCommon.popToTarget(plus.webview.getLaunchWebview().id);
+			}
+		</script>
+	</body>
+
+</html>
